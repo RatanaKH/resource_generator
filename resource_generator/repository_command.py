@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 import typer
@@ -27,8 +28,14 @@ class {repo_name.capitalize()}Repository(BaseRepo[{repo_name.capitalize()}Model,
     """
 
     created = __create_file("repository", f"{repo_name.lower()}", "_repository.py", template)
+
     if created:
-        content = f"""from app.repository.{repo_name.lower()}_repository import {repo_name.capitalize()}Repository
+        content_top = f"""from fastapi import Depends
+from typing import Annotated
+        """
+
+        content_bottom = f"""
+from app.repository.{repo_name.lower()}_repository import {repo_name.capitalize()}Repository
 
 {repo_name.capitalize()}RepositoryDep = Annotated[{repo_name.capitalize()}Repository, Depends({repo_name.capitalize()}Repository)]
         """
@@ -36,8 +43,12 @@ class {repo_name.capitalize()}Repository(BaseRepo[{repo_name.capitalize()}Model,
         repository_initializer = Path(f"{BASE_DIR}/repository/__init__.py")
         if repository_initializer.exists():
             with repository_initializer.open('a') as file:
-                file.write(content)
+                file.write(content_bottom)
 
             __format(file_path=repository_initializer)
         else:
-            print(f"{repository_initializer} does not exist!")
+            with repository_initializer.open('w') as file:
+                file.write(content_top)
+                file.write(content_bottom)
+
+            __format(file_path=repository_initializer)

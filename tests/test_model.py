@@ -35,3 +35,35 @@ def test_make_model_and_already_exist(setup_data):
     result = runner.invoke(app, ["make-model", "name", "Users"])
     assert result.exit_code == 0
     assert "already exists!" in result.stdout , f"Unexpected error message: {result.stdout}"
+
+def test_auto_make_base_model(setup_data):
+    result = runner.invoke(app, ["make-model", "name", "Users"])
+    assert os.path.exists(TEMP_DIR + "/base_model.py") == True
+    assert "A Models Base created successfully!" in result.stdout
+
+def test_auto_make_base_model_already_exist():
+    runner.invoke(app, ["make-model", "name", "Users"])
+    result = runner.invoke(app, ["make-model", "name", "Users123"])
+    assert os.path.exists(TEMP_DIR + "/base_model.py") == True
+    assert "A Models Base created successfully!" not in result.stdout
+
+def test_make_model_with_controller_option():
+    result = runner.invoke(app, ["make-model", "name", "Users", "--controller", "True"])
+    assert "A Models Users created successfully!" in result.stdout
+    assert "A Controllers Users created successfully!" in result.stdout
+
+def test_make_model_with_service_option():
+    result = runner.invoke(app, ["make-model", "name", "Users", "--service", "True"])
+    assert "A Models Users created successfully!" in result.stdout
+    assert "A Services Users created successfully!" in result.stdout
+
+def test_make_model_with_schema_option():
+    result = runner.invoke(app, ["make-model", "name", "Users", "--schema", "True"])
+    assert "A Models Users created successfully!" in result.stdout
+    assert "A Schema Users created successfully!" in result.stdout
+
+def test_make_model_with_repository_option():
+    result = runner.invoke(app, ["make-model", "name", "Users", "--repository", "True"])
+    assert "A Models Users created successfully!" in result.stdout
+    assert "A Repository Users created successfully!" in result.stdout
+
