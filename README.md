@@ -49,6 +49,18 @@ To install this package, use poetry:
 ### Example:
 ```shell
   ratana-pls make-model name Users
+  
+  # Generate model and Users Controller
+  ratana-pls make-model name Users --controller 
+  
+  # Generate model and Users Service
+  ratana-pls make-model name Users --service
+  
+  # Generate model and Users Schema
+  ratana-pls make-model name Users --schema 
+  
+  # Generate model and Users Repository
+  ratana-pls make-model name Users --repository 
 ```
 ```shell
   ratana-pls make-controller name Users
@@ -63,6 +75,25 @@ To install this package, use poetry:
   ratana-pls make-service name Users
 ```
 
+
+
+#### Sample project structure
+```
+Project-Name
+├── app
+│   ├── controllers
+│   ├── services
+│   ├── models
+│   ├── schemas
+│   ├── repository
+│   ├── router.py
+│   ├── main.py
+├── poetry.lock
+├── package.json
+├── pyproject.toml
+└── .gitignore
+```
+
 ___
 
-This package use build over [typer](https://github.com/fastapi/typer) library.
+This package is built on the [typer](https://github.com/fastapi/typer) library.
