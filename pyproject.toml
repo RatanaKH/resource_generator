@@ -23,6 +23,7 @@ isort = "^5.13.2"
 pytest = "^8.3.4"
 setuptools = "^75.6.0"
 build = "^1.2.2.post1"
+python-dotenv = "^1.0.1"
 
 
 [build-system]

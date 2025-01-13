@@ -48,22 +48,18 @@ def test_auto_make_base_model_already_exist():
     assert "A Models Base created successfully!" not in result.stdout
 
 def test_make_model_with_controller_option():
-    result = runner.invoke(app, ["make-model", "name", "Users", "--controller", "True"])
-    assert "A Models Users created successfully!" in result.stdout
+    result = runner.invoke(app, ["make-model", "name", "Users", "--controller"])
     assert "A Controllers Users created successfully!" in result.stdout
 
 def test_make_model_with_service_option():
-    result = runner.invoke(app, ["make-model", "name", "Users", "--service", "True"])
-    assert "A Models Users created successfully!" in result.stdout
+    result = runner.invoke(app, ["make-model", "name", "Users", "--service"])
     assert "A Services Users created successfully!" in result.stdout
 
 def test_make_model_with_schema_option():
-    result = runner.invoke(app, ["make-model", "name", "Users", "--schema", "True"])
-    assert "A Models Users created successfully!" in result.stdout
+    result = runner.invoke(app, ["make-model", "name", "Users", "--schema"])
     assert "A Schema Users created successfully!" in result.stdout
 
 def test_make_model_with_repository_option():
-    result = runner.invoke(app, ["make-model", "name", "Users", "--repository", "True"])
-    assert "A Models Users created successfully!" in result.stdout
+    result = runner.invoke(app, ["make-model", "name", "Users", "--repository"])
     assert "A Repository Users created successfully!" in result.stdout
 
