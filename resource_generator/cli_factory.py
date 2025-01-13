@@ -4,7 +4,7 @@ from pathlib import Path
 from rich.console import Console
 from rich.text import Text
 
-BASE_DIR = Path(__file__).parent.parent / "app"
+BASE_DIR = Path(__file__).resolve().parent.parent / "app"
 console = Console()
 
 
