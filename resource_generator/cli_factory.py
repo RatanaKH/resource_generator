@@ -1,13 +1,21 @@
+import os
 import subprocess
 from pathlib import Path
 
 from rich.console import Console
 from rich.text import Text
+from dotenv import load_dotenv
 
-BASE_DIR = Path(__file__).resolve().parent.parent / "app"
+
+load_dotenv()
+
+APP_DIR = os.getenv("APP_DIR") or "app"
+
+BASE_DIR = Path(os.getenv("PROJECT_ROOT", Path(__file__).resolve().parent.parent)) / APP_DIR
 console = Console()
 
-
+console.print(f"Current working directory: {os.getcwd()}")
+console.print(f"BASE_DIR: {BASE_DIR}")
 
 def __create_file(
         directory: str,
