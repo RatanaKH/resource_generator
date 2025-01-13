@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "resource-generator"
-version = "0.1.3"
+version = "0.1.4"
 description = "Python CLI for generate resource such as model, controller, service, schema and repository"
 authors = ["Ratana Khun <khunratana168.edu@gmail.com>"]
 readme = "README.md"
