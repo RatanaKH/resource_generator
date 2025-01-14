@@ -40,6 +40,20 @@ To install this package, use poetry:
   poetry add resource-generator
 ````
 
+### Configuration
+**Open the ```.env``` file** and configure the following paths:
+
+```
+PROJECT_ROOT=D:/Projects/Backend/deep-face
+APP_DIR=app
+```
+Alternatively, you can set these as local environment variables in your terminal:
+```
+export PROJECT_ROOT=D:/Projects/Backend/deep-face  
+export APP_DIR=app
+```
+If neither configuration is provided, the system will operate in an isolated environment by default.
+
 ## How to use command
 
 ````shell
